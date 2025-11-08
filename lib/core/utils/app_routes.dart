@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news/ui/home/home_screen.dart';
+import 'package:news/ui/screens/home_screen.dart';
 
 enum AppRoutes {
   home('/');

@@ -7,13 +7,18 @@ class CategoryCard extends StatelessWidget {
   final CategoryModel category;
   final Function(int index, CategoryModel) onCategorySelected;
 
-  const CategoryCard({super.key, required this.index, required this.category, required this.onCategorySelected});
+  const CategoryCard({
+    super.key,
+    required this.index,
+    required this.category,
+    required this.onCategorySelected,
+  });
 
   @override
   Widget build(BuildContext context) {
     var even = index % 2 == 0;
     return InkWell(
-      onTap: (){
+      onTap: () {
         onCategorySelected(index, category);
       },
       child: AspectRatio(
@@ -66,7 +71,9 @@ class CategoryCard extends StatelessWidget {
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
-                        even ? Icons.arrow_forward_ios : Icons.arrow_back_ios_new,
+                        even
+                            ? Icons.arrow_forward_ios
+                            : Icons.arrow_back_ios_new,
                         color: AppColors.white,
                       ),
                     ),
