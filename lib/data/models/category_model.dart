@@ -15,7 +15,7 @@ class CategoryModel {
       name: 'Business',
       image: 'assets/images/business.png',
     ),
-    CategoryModel(id: 'sport', name: 'Sport', image: 'assets/images/sport.png'),
+    CategoryModel(id: 'sports', name: 'Sports', image: 'assets/images/sport.png'),
     CategoryModel(
       id: 'health',
       name: 'Health',

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:news/core/theme/app_colors.dart';
 import 'package:news/core/utils/app_routes.dart';
 import 'package:news/data/models/category_model.dart';
-import 'package:news/ui/home/pages/categories_page.dart';
-import 'package:news/ui/home/pages/news_page.dart';
+import 'package:news/ui/widgets/categories_page.dart';
+import 'package:news/ui/widgets/news_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: currentIndex == -1
           ? CategoriesPage(onCategorySelected: changePage)
-          : NewsPage(),
+          : NewsPage(category: selectedCategory!),
     );
   }
 
