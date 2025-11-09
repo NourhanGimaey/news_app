@@ -1,40 +1,58 @@
 class CategoryModel {
   String id;
   String name;
-  String image;
-  CategoryModel({required this.id, required this.name, required this.image});
+  String? imageDark;
+  String? imageLight;
+
+  CategoryModel({
+    required this.id,
+    required this.name,
+    this.imageDark,
+    this.imageLight,
+  });
 
   static List<CategoryModel> categories = [
     CategoryModel(
       id: 'general',
       name: 'General',
-      image: 'assets/images/general.png',
+      imageDark: 'assets/images/general.png',
+      imageLight: 'assets/images/general_dark.png',
     ),
     CategoryModel(
       id: 'business',
       name: 'Business',
-      image: 'assets/images/business.png',
+      imageDark: 'assets/images/business.png',
+      imageLight: 'assets/images/busniess_dark.png',
     ),
-    CategoryModel(id: 'sports', name: 'Sports', image: 'assets/images/sport.png'),
+    CategoryModel(
+      id: 'sports',
+      name: 'Sports',
+      imageDark: 'assets/images/sport.png',
+      imageLight: 'assets/images/sport_dark.png',
+    ),
     CategoryModel(
       id: 'health',
       name: 'Health',
-      image: 'assets/images/health.png',
+      imageDark: 'assets/images/health.png',
+      imageLight: 'assets/images/health_dark.png',
     ),
     CategoryModel(
       id: 'science',
       name: 'Science',
-      image: 'assets/images/science.png',
+      imageDark: 'assets/images/science.png',
+      imageLight: 'assets/images/science_dark.png',
     ),
     CategoryModel(
       id: 'technology',
       name: 'Technology',
-      image: 'assets/images/technology.png',
+      imageDark: 'assets/images/technology.png',
+      imageLight: 'assets/images/technology_dark.png',
     ),
     CategoryModel(
       id: 'entertainment',
       name: 'Entertainment',
-      image: 'assets/images/entertainment.png',
+      imageDark: 'assets/images/entertainment.png',
+      imageLight: 'assets/images/entertainment_dark.png',
     ),
   ];
 }

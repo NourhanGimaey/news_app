@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news/core/theme/app_colors.dart';
 import 'package:news/data/api/api_manager.dart';
 import 'package:news/data/models/articles_response.dart';
 import 'package:news/data/models/category_model.dart';
@@ -27,7 +26,7 @@ class _NewsPageState extends State<NewsPage> {
         FutureBuilder<SourceResponse?>(
           future: apiManager.getSources(widget.category.id),
           builder: (context, snapshot) {
-          if (snapshot.hasError) {
+            if (snapshot.hasError) {
               return Center(child: Text(snapshot.error.toString()));
             } else {
               var data = snapshot.data;
@@ -35,9 +34,7 @@ class _NewsPageState extends State<NewsPage> {
                 return Center(child: CircularProgressIndicator());
               } else {
                 if (articlesResponse == null && errorMessage == null) {
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
-                    getArticles(data.sources![0].id ?? '');
-                  });
+                  getArticles(data.sources![0].id ?? '');
                 }
                 return DefaultTabController(
                   length: data.sources!.length,
@@ -48,8 +45,8 @@ class _NewsPageState extends State<NewsPage> {
                       getArticles(data.sources![index].id ?? '');
                     },
                     isScrollable: true,
-                    indicatorColor: AppColors.white,
-                    labelColor: AppColors.white,
+                    indicatorColor: Theme.of(context).colorScheme.onSurface,
+                    labelColor: Theme.of(context).colorScheme.onSurface,
                     tabAlignment: TabAlignment.start,
                     dividerColor: Colors.transparent,
                     padding: EdgeInsets.symmetric(horizontal: 16.0),

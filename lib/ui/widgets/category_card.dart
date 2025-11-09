@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:news/core/theme/app_colors.dart';
 import 'package:news/data/models/category_model.dart';
+import 'package:news/providers/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class CategoryCard extends StatelessWidget {
   final int index;
@@ -16,6 +17,13 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDarkMode = themeProvider.themeMode == ThemeMode.dark;
+
+    final String imagePath = isDarkMode
+        ? category.imageDark!
+        : category.imageLight!;
+
     var even = index % 2 == 0;
     return InkWell(
       onTap: () {
@@ -26,7 +34,10 @@ class CategoryCard extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(32),
           decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage(category.image)),
+            image: DecorationImage(
+              image: AssetImage(imagePath),
+              fit: BoxFit.cover,
+            ),
             borderRadius: BorderRadius.circular(24),
           ),
           child: Column(
@@ -39,7 +50,7 @@ class CategoryCard extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.black,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
               Spacer(),
@@ -60,7 +71,7 @@ class CategoryCard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.w500,
-                            color: AppColors.white,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
                       ),
@@ -74,7 +85,7 @@ class CategoryCard extends StatelessWidget {
                         even
                             ? Icons.arrow_forward_ios
                             : Icons.arrow_back_ios_new,
-                        color: AppColors.white,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     if (!even)
@@ -85,7 +96,7 @@ class CategoryCard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.w500,
-                            color: AppColors.white,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
                       ),
