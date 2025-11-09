@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:news/core/theme/app_colors.dart';
-import 'package:news/core/utils/app_routes.dart';
 import 'package:news/data/models/category_model.dart';
 import 'package:news/ui/widgets/categories_page.dart';
+import 'package:news/ui/widgets/app_drawer.dart';
 import 'package:news/ui/widgets/news_page.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,43 +19,22 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: Column(
-          children: [
-            Container(
-              height: 200,
-              width: double.infinity,
-              color: AppColors.white,
-              child: Center(
-                child: Text(
-                  "News App",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.black,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 16),
-            ListTile(
-              leading: Icon(Icons.home, color: AppColors.white),
-              title: Text("Home", style: TextStyle(color: AppColors.white)),
-              onTap: () {
-                Navigator.pushReplacementNamed(
-                  context,
-                  AppRoutes.home.routeName,
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: const AppDrawer(),
       appBar: AppBar(
-        title: Text(appBarTitle),
+        title: Text(
+          appBarTitle,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
         actions: [
           IconButton(
-            icon: Icon(Icons.search, color: AppColors.white),
+            icon: Icon(
+              Icons.search,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
             onPressed: () {},
           ),
         ],
