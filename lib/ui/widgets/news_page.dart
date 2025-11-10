@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news/data/api/api_manager.dart';
+import 'package:news/data/api/api_client.dart';
 import 'package:news/data/models/articles_response.dart';
 import 'package:news/data/models/category_model.dart';
 import 'package:news/data/models/source_response.dart';
@@ -20,11 +20,11 @@ class _NewsPageState extends State<NewsPage> {
 
   @override
   Widget build(BuildContext context) {
-    ApiManager apiManager = ApiManager();
+    // ApiManager apiManager = ApiManager();
     return Column(
       children: [
         FutureBuilder<SourceResponse?>(
-          future: apiManager.getSources(widget.category.id),
+          future: ApiClient(buildDioObject()).getSources(widget.category.id),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return Center(child: Text(snapshot.error.toString()));
@@ -78,7 +78,7 @@ class _NewsPageState extends State<NewsPage> {
 
   Future<void> getArticles(String source) async {
     try {
-      articlesResponse = await ApiManager().getArticles(source);
+      articlesResponse = await ApiClient(buildDioObject()).getArticles(source);
     } catch (e) {
       errorMessage = e.toString();
     } finally {
