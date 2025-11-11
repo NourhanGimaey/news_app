@@ -4,6 +4,7 @@ import 'package:news/data/models/articles_response.dart';
 import 'package:news/data/models/source_response.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+@Deprecated("Migrated to retrofit ApiClient instead")
 class ApiManager {
   late Dio dio = buildDioObject();
   final String baseUrl = 'newsapi.org';

@@ -8,34 +8,39 @@ part 'api_client.g.dart';
 
 @RestApi()
 abstract class ApiClient {
+  static ApiClient? _instance;
   factory ApiClient(Dio dio) = _ApiClient;
+
+  static get instance {
+    if (_instance == null) {
+      final String apiKey = dotenv.env['apiKey'] ?? '';
+
+      Dio dio = Dio();
+      dio.options = BaseOptions(
+        baseUrl: 'https://newsapi.org',
+        connectTimeout: const Duration(seconds: 30),
+        receiveTimeout: const Duration(seconds: 30),
+        headers: {"X-Api-Key": apiKey},
+      );
+
+      dio.interceptors.add(
+        PrettyDioLogger(
+          request: true,
+          requestBody: true,
+          requestHeader: true,
+          responseHeader: true,
+          responseBody: true,
+        ),
+      );
+
+      _instance = _ApiClient(dio);
+    }
+    return _instance!;
+  }
 
   @GET("/v2/top-headlines/sources")
   Future<SourceResponse> getSources(@Query("category") String category);
+
   @GET("/v2/top-headlines")
   Future<ArticlesResponse> getArticles(@Query("sources") String source);
-  
-}
-
-Dio buildDioObject() {
-  final String apiKey = dotenv.env['apiKey'] ?? '';
-
-  Dio dio = Dio();
-  dio.options = BaseOptions(
-    baseUrl: 'https://newsapi.org',
-    connectTimeout: const Duration(seconds: 30),
-    receiveTimeout: const Duration(seconds: 30),
-    headers: {"X-Api-Key": apiKey},
-  );
-
-  dio.interceptors.add(
-    PrettyDioLogger(
-      request: true,
-      requestBody: true,
-      requestHeader: true,
-      responseHeader: true,
-      responseBody: true,
-    ),
-  );
-  return dio;
 }
