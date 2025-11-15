@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news/data/models/category_model.dart';
-import 'package:news/providers/theme_provider.dart';
+import 'package:news/domain/entities/category_model.dart';
+import 'package:news/core/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class CategoryCard extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:news/core/theme/app_themes.dart';
 import 'package:news/core/utils/app_routes.dart';
-import 'package:news/providers/theme_provider.dart';
+import 'package:news/core/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() async {

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:news/data/models/articles_response.dart';
-import 'package:news/data/models/source_response.dart';
+import 'package:news/domain/entities/articles_entity.dart';
+import 'package:news/domain/entities/source_entity.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
 part 'api_client.g.dart';

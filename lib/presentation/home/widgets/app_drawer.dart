@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news/core/utils/app_routes.dart';
-import 'package:news/ui/widgets/theme_dropdown.dart';
+import 'package:news/presentation/home/widgets/theme_dropdown.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
