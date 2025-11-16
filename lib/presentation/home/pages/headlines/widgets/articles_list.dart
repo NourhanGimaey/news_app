@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news/domain/entities/articles_entity.dart';
-import 'package:news/presentation/home/pages/news_headlines/widgets/article_card.dart';
+import 'package:news/presentation/home/pages/headlines/widgets/article_card.dart';
 
 class ArticlesList extends StatelessWidget {
   final ArticlesResponse? articlesResponse;
