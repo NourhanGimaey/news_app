@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news/core/utils/app_routes.dart';
-import 'package:news/presentation/home/home_view_model.dart';
-import 'package:news/presentation/home/pages/news_categories/widgets/categories_page.dart';
+import 'package:news/presentation/home/pages/headlines/headlines_page.dart';
+import 'package:news/presentation/home/provider/home_view_model.dart';
+import 'package:news/presentation/home/pages/categories/widgets/categories_page.dart';
 import 'package:news/presentation/home/widgets/app_drawer.dart';
-import 'package:news/presentation/home/pages/news_headlines/news_page.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
           ),
           body: viewModel.currentIndex == -1
               ? CategoriesPage(onCategorySelected: viewModel.changePage)
-              : NewsPage(category: viewModel.selectedCategory!),
+              : HeadlinesPage(category: viewModel.selectedCategory!),
         ),
       ),
     );
