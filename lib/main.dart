@@ -4,7 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:news/core/theme/app_themes.dart';
 import 'package:news/core/utils/app_routes.dart';
 import 'package:news/core/theme/theme_provider.dart';
-import 'package:news/presentation/home/pages/headlines/cubit/my_bloc_observer.dart';
+import 'package:news/core/utils/my_bloc_observer.dart';
 import 'package:provider/provider.dart';
 
 void main() async {

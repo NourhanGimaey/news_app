@@ -29,7 +29,6 @@ class HeadlinesPage extends StatelessWidget {
             final sources = state.sourceResponse.sources!;
 
             ArticlesResponse? articlesResponse;
-            String? articlesErrorMessage;
 
             if (state is ArticlesLoadedState) {
               articlesResponse = state.articlesResponse;
@@ -62,7 +61,6 @@ class HeadlinesPage extends StatelessWidget {
                 Expanded(
                   child: ArticlesList(
                     articlesResponse: articlesResponse,
-                    errorMessage: articlesErrorMessage,
                   ),
                 ),
               ],

@@ -3,21 +3,25 @@ import 'package:news/data/api/retrofit_api_client.dart';
 import 'package:news/presentation/home/pages/headlines/cubit/headlines_page_state.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// @injectable
 class HeadlinesPageCubit extends Cubit<HeadlinesPageState> {
   final String categoryId;
+  // late SourcesRepository sourcesRepository;
 
   HeadlinesPageCubit({required this.categoryId}) : super(InitialState()) {
-    getSources();
+    getSources(categoryId);
   }
 
-  Future<void> getSources() async {
+  Future<void> getSources(categoryId) async {
     try {
       emit(LoadingState(loadingMessage: 'Loading...'));
 
       final sourceResponse = await ApiClient.instance.getSources(categoryId);
 
-      if (sourceResponse?.sources != null &&
-          sourceResponse!.sources!.isNotEmpty) {
+      // final sourceResponse = await sourcesRepository.getSources(categoryId);
+
+      if (sourceResponse.sources != null &&
+          sourceResponse.sources!.isNotEmpty) {
         emit(SourcesLoadedState(sourceResponse, 0));
         await getArticles(sourceResponse.sources![0].id ?? '');
       }

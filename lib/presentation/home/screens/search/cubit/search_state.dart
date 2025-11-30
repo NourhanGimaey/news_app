@@ -23,5 +23,6 @@ class EmptyResultsState extends SearchState {
 
 class SuccessState extends SearchState {
   final List<Articles> articles;
+
   SuccessState({required this.articles});
 }
