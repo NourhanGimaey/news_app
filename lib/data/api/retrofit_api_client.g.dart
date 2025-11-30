@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'api_client.dart';
+part of 'retrofit_api_client.dart';
 
 // dart format off
 
@@ -57,6 +57,33 @@ class _ApiClient implements ApiClient {
           .compose(
             _dio.options,
             '/v2/top-headlines',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ArticlesResponse _value;
+    try {
+      _value = ArticlesResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<ArticlesResponse> searchArticles(String q) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'q': q};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<ArticlesResponse>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/v2/everything',
             queryParameters: queryParameters,
             data: _data,
           )

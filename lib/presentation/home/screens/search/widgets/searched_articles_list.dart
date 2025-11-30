@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:news/domain/entities/articles_response.dart';
 import 'package:news/presentation/home/pages/headlines/widgets/article_card.dart';
 
-class ArticlesList extends StatelessWidget {
-  final ArticlesResponse? articlesResponse;
-  final String? errorMessage;
+class SearchedArticlesList extends StatelessWidget {
+  final List<Articles> articles;
 
-  const ArticlesList({super.key, this.articlesResponse, this.errorMessage});
+  const SearchedArticlesList({super.key, required this.articles});
 
   @override
   Widget build(BuildContext context) {
-    var data = articlesResponse?.articles ?? [];
+    var data = articles;
 
     return ListView.separated(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
       itemBuilder: (context, index) {
         return ArticleCard(article: data[index]);
       },
-      separatorBuilder: (context, index) => Divider(color: Colors.transparent),
+      separatorBuilder: (context, index) =>
+          const Divider(color: Colors.transparent),
       itemCount: data.length,
     );
   }

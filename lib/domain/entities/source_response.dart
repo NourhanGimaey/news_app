@@ -1,24 +1,29 @@
 class SourceResponse {
   String? status;
   List<Sources>? sources;
+  String? code;
+  String? message;
 
-  SourceResponse({this.status, this.sources});
+  SourceResponse({this.status, this.sources, this.code, this.message});
 
   SourceResponse.fromJson(Map<String, dynamic> json) {
     status = json['status'];
+    code = json['code'];
+    message = json['message'];
+
     if (json['sources'] != null) {
       sources = <Sources>[];
       json['sources'].forEach((v) {
-        sources!.add(new Sources.fromJson(v));
+        sources!.add(Sources.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    if (this.sources != null) {
-      data['sources'] = this.sources!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    if (sources != null) {
+      data['sources'] = sources!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -33,14 +38,15 @@ class Sources {
   String? language;
   String? country;
 
-  Sources(
-      {this.id,
-      this.name,
-      this.description,
-      this.url,
-      this.category,
-      this.language,
-      this.country});
+  Sources({
+    this.id,
+    this.name,
+    this.description,
+    this.url,
+    this.category,
+    this.language,
+    this.country,
+  });
 
   Sources.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -53,14 +59,14 @@ class Sources {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['description'] = this.description;
-    data['url'] = this.url;
-    data['category'] = this.category;
-    data['language'] = this.language;
-    data['country'] = this.country;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['description'] = description;
+    data['url'] = url;
+    data['category'] = category;
+    data['language'] = language;
+    data['country'] = country;
     return data;
   }
 }
