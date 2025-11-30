@@ -7,6 +7,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
 part 'retrofit_api_client.g.dart';
 
+// @lazySingleton
 @RestApi()
 abstract class ApiClient {
   static ApiClient? _instance;

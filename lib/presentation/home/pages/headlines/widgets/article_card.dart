@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news/core/theme/app_colors.dart';
 import 'package:news/domain/entities/articles_response.dart';
-import 'package:news/presentation/home/pages/headlines/cubit/headlines_page_cubit.dart';
 
 class ArticleCard extends StatelessWidget {
   final Articles article;
-  const ArticleCard({super.key, required this.article});
+  final void Function() onTap;
+  const ArticleCard({super.key, required this.article, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    final String? articleUrl = article.url;
-
     return InkWell(
-      onTap: articleUrl != null
-          ? () =>
-                context.read<HeadlinesPageCubit>().launchArticleUrl(articleUrl)
-          : null,
+      onTap: onTap,
       borderRadius: BorderRadius.circular(24),
       child: Container(
         padding: const EdgeInsets.all(16.0),
