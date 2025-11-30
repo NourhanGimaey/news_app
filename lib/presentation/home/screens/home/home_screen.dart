@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news/core/utils/app_routes.dart';
 import 'package:news/presentation/home/pages/headlines/headlines_page.dart';
-import 'package:news/presentation/home/provider/home_view_model.dart';
-import 'package:news/presentation/home/pages/categories/widgets/categories_page.dart';
+import 'package:news/presentation/home/pages/categories/provider/home_provider.dart';
+import 'package:news/presentation/home/pages/categories/categories_page.dart';
 import 'package:news/presentation/home/widgets/app_drawer.dart';
 import 'package:provider/provider.dart';
 
@@ -12,8 +12,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => HomeViewModel(),
-      child: Consumer<HomeViewModel>(
+      create: (context) => HomeProvider(),
+      child: Consumer<HomeProvider>(
         builder: (context, viewModel, child) => Scaffold(
           drawer: const AppDrawer(),
           appBar: AppBar(

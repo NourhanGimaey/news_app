@@ -1,20 +1,20 @@
-import 'package:news/domain/entities/articles_entity.dart';
-import 'package:news/domain/entities/source_entity.dart';
+import 'package:news/domain/entities/articles_response.dart';
+import 'package:news/domain/entities/source_response.dart';
 
 sealed class HeadlinesPageState {}
 
 class InitialState extends HeadlinesPageState {}
 
 class LoadingState extends HeadlinesPageState {
-  final String message;
+  final String loadingMessage;
 
-  LoadingState(this.message);
+  LoadingState({required this.loadingMessage});
 }
 
 class ErrorState extends HeadlinesPageState {
   final String errorMessage;
 
-  ErrorState(this.errorMessage);
+  ErrorState({required this.errorMessage});
 }
 
 class SourcesLoadedState extends HeadlinesPageState {

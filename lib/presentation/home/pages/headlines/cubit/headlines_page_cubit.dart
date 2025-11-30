@@ -1,17 +1,18 @@
-import 'package:news/data/api/api_client.dart';
-import 'package:news/presentation/home/cubit/headlines_page_state.dart';
+import 'package:news/data/api/retrofit_api_client.dart';
+import 'package:news/presentation/home/pages/headlines/cubit/headlines_page_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HeadlinesPageViewModel extends Cubit<HeadlinesPageState> {
+class HeadlinesPageCubit extends Cubit<HeadlinesPageState> {
   final String categoryId;
 
-  HeadlinesPageViewModel({required this.categoryId}) : super(InitialState()) {
+  HeadlinesPageCubit({required this.categoryId}) : super(InitialState()) {
     getSources();
   }
 
   Future<void> getSources() async {
-    emit(LoadingState('Loading...'));
     try {
+      emit(LoadingState(loadingMessage: 'Loading...'));
+
       final sourceResponse = await ApiClient.instance.getSources(categoryId);
 
       if (sourceResponse?.sources != null &&
@@ -20,16 +21,16 @@ class HeadlinesPageViewModel extends Cubit<HeadlinesPageState> {
         await getArticles(sourceResponse.sources![0].id ?? '');
       }
     } catch (e) {
-      emit(ErrorState('Error fetching sources: ${e.toString()}'));
+      emit(ErrorState(errorMessage: 'Error fetching sources: ${e.toString()}'));
     }
   }
 
   Future<void> getArticles(String sourceId) async {
     if (state is SourcesLoadedState) {
       final currentState = state as SourcesLoadedState;
-      emit(LoadingState('Loading...'));
 
       try {
+        emit(LoadingState(loadingMessage: 'Loading...'));
         final articlesResponse = await ApiClient.instance.getArticles(sourceId);
 
         emit(
@@ -40,7 +41,7 @@ class HeadlinesPageViewModel extends Cubit<HeadlinesPageState> {
           ),
         );
       } catch (e) {
-        emit(ErrorState('Error fetching articles: ${e.toString()}'));
+        emit(ErrorState(errorMessage: 'Error fetching articles: ${e.toString()}'));
       }
     }
   }

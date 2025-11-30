@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news/core/theme/app_colors.dart';
-import 'package:news/domain/entities/articles_entity.dart';
+import 'package:news/domain/entities/articles_response.dart';
 
 class ArticleCard extends StatelessWidget {
   final Articles article;

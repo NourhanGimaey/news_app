@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news/domain/category_model.dart';
-import 'package:news/domain/entities/articles_entity.dart';
-import 'package:news/presentation/home/cubit/headlines_page_state.dart';
-import 'package:news/presentation/home/cubit/headlines_page_view_model.dart';
+import 'package:news/domain/models/category_model.dart';
+import 'package:news/domain/entities/articles_response.dart';
+import 'package:news/presentation/home/pages/headlines/cubit/headlines_page_state.dart';
+import 'package:news/presentation/home/pages/headlines/cubit/headlines_page_cubit.dart';
 import 'package:news/presentation/home/pages/headlines/widgets/articles_list.dart';
 
 class HeadlinesPage extends StatelessWidget {
@@ -13,27 +13,27 @@ class HeadlinesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HeadlinesPageViewModel(categoryId: category.id),
-      child: BlocBuilder<HeadlinesPageViewModel, HeadlinesPageState>(
+      create: (context) => HeadlinesPageCubit(categoryId: category.id),
+      child: BlocBuilder<HeadlinesPageCubit, HeadlinesPageState>(
         builder: (context, state) {
-          if (state is ErrorState) {
-            return Center(child: Text(state.errorMessage));
-          }
-
           if (state is InitialState || state is LoadingState) {
             return const Center(child: CircularProgressIndicator());
           }
 
+          if (state is ErrorState) {
+            return Center(child: Text(state.errorMessage));
+          }
+
           if (state is SourcesLoadedState) {
-            final cubit = context.read<HeadlinesPageViewModel>();
+            final cubit = context.read<HeadlinesPageCubit>();
             final sources = state.sourceResponse.sources!;
-            
+
             ArticlesResponse? articlesResponse;
             String? articlesErrorMessage;
 
             if (state is ArticlesLoadedState) {
               articlesResponse = state.articlesResponse;
-            } 
+            }
 
             return Column(
               children: [
@@ -68,7 +68,7 @@ class HeadlinesPage extends StatelessWidget {
               ],
             );
           }
-          
+
           return const SizedBox.shrink();
         },
       ),

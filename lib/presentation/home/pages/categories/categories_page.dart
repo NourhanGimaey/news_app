@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news/domain/category_model.dart';
+import 'package:news/domain/models/category_model.dart';
 import 'package:news/presentation/home/pages/categories/widgets/category_card.dart';
 
 class CategoriesPage extends StatelessWidget {
